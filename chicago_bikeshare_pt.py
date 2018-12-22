@@ -193,11 +193,59 @@ input("Aperte Enter para continuar...")
 # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
 # Você não deve usar funções prontas para isso, como max() e min().
 trip_duration_list = column_to_list(data_list, 2)
-min_trip = 0.
-max_trip = 0.
-mean_trip = 0.
-median_trip = 0.
 
+def trip_duration_min(data_list):
+    min_trip = float(data_list[1][2])
+
+    for x in data_list:
+        if(float(x[2]) < min_trip):
+            min_trip = float(x[2])
+
+    return min_trip
+
+def trip_duration_max(data_list):
+    max_trip = float(data_list[1][2])
+
+    for x in data_list:
+        if(float(x[2]) > max_trip):
+            max_trip = float(x[2])
+
+    return max_trip
+
+def trip_duration_mean(data_list):
+    max_mean = 0.
+
+    for x in data_list:
+        max_mean += float(x[2])
+
+    return max_mean / len(data_list)
+
+def trip_duration_median(data_list):
+    teste = column_to_list(data_list, 2)
+    testee = []
+    for x in teste:
+        if x != '':
+            testee.append(float(x))
+            
+    data_list_ordered = sorted(testee)
+    count = len(data_list_ordered)  
+    max_median = 0.
+    if count % 2 == 0:
+        print(data_list_ordered[int(count / 2)])
+        print(data_list_ordered[int(count / 2) + 1])
+
+        max_median = float(((data_list_ordered[int(count / 2)] + data_list_ordered[int(count / 2) + 1])) / 2)
+    else:
+        max_median = float(data_list_ordered[int(count / 2 + 0.5)])
+
+    return max_median
+
+min_trip = trip_duration_min(data_list)
+max_trip = trip_duration_max(data_list)
+mean_trip = trip_duration_mean(data_list)
+median_trip = trip_duration_median(data_list)
+
+print(round(median_trip))
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
