@@ -52,6 +52,14 @@ input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index):
+    """
+      Função column_to_list.
+      Argumentos:
+          param1: list da dados.
+          param2: index
+      Retorna:
+          Lista de dados pelo index(feature)
+      """
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     for x in data:
@@ -93,6 +101,13 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data_list):
+    """
+      Função count_gender.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          Uma lista com a quantidade de amostras por generos
+      """
     male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
     female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
     return [male, female]
@@ -113,6 +128,13 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
+    """
+      Função most_popular_gender.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          Genero mais popular(Male/Female)
+      """
     male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
     female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
     answer = "Female"
@@ -148,6 +170,13 @@ input("Aperte Enter para continuar...")
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 def types_users(data_list):
+    """
+      Função types_users.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          List com os tipos de usuários.
+      """
     user_types = []
     for x in data_list:
         if x[-3] not in user_types:
@@ -157,6 +186,13 @@ def types_users(data_list):
     return user_types
 
 def count_types_users(data_list):
+    """
+      Função count_types_users.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+        Quantidade de usuário por tipos
+      """
     customer = len(list(filter(lambda x: x[-3].lower() == 'Customer'.lower(), data_list)))
     subscriber = len(list(filter(lambda x: x[-3].lower() == 'Subscriber'.lower(), data_list)))
     dependent = len(list(filter(lambda x: x[-3].lower() == 'Dependent'.lower(), data_list)))
@@ -195,6 +231,13 @@ input("Aperte Enter para continuar...")
 trip_duration_list = column_to_list(data_list, 2)
 
 def trip_duration_min(data_list):
+    """
+      Função trip_duration_min.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          Valor minimo da duração de uma viagem.
+      """
     min_trip = float(data_list[1][2])
 
     for x in data_list:
@@ -204,6 +247,13 @@ def trip_duration_min(data_list):
     return min_trip
 
 def trip_duration_max(data_list):
+    """
+      Função trip_duration_max.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          Valor máximo da duração de uma viagem.
+      """
     max_trip = float(data_list[1][2])
 
     for x in data_list:
@@ -213,6 +263,13 @@ def trip_duration_max(data_list):
     return max_trip
 
 def trip_duration_mean(data_list):
+    """
+      Função trip_duration_mean.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          Valor médio da duração de uma viagem.
+      """
     max_mean = 0.
 
     for x in data_list:
@@ -221,6 +278,13 @@ def trip_duration_mean(data_list):
     return max_mean / len(data_list)
 
 def trip_duration_median(data_list):
+    """
+      Função trip_duration_median.
+      Argumentos:
+          param1: list da dados.
+      Retorna:
+          Valor mediano da duração de uma viagem.
+      """
     teste = column_to_list(data_list, 2)
     testee = []
     for x in teste:
