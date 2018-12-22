@@ -88,12 +88,13 @@ assert male == 935854 and female == 298784, "TAREFA 4: A conta não bate."
 
 input("Aperte Enter para continuar...")
 # Por que nós não criamos uma função para isso?
+# Porque podemos usar a função de filter para filtrar somente o genero que queremos.
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data_list):
-    male = 0
-    female = 0
+    male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
+    female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
     return [male, female]
 
 
