@@ -113,7 +113,13 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
-    answer = ""
+    male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
+    female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
+    answer = "Female"
+
+    if male > female:
+        answer = "Male"
+
     return answer
 
 
