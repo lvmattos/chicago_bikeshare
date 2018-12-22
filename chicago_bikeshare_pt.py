@@ -28,6 +28,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
+print(data_list[:20])
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
@@ -189,15 +190,15 @@ input("Aperte Enter para continuar...")
 # TAREFA 11
 # Volte e tenha certeza que você documentou suas funções. Explique os parâmetros de entrada, a saída, e o que a função faz. Exemplo:
 # def new_function(param1: int, param2: str) -> list:
-      """
-      Função de exemplo com anotações.
-      Argumentos:
-          param1: O primeiro parâmetro.
-          param2: O segundo parâmetro.
-      Retorna:
-          Uma lista de valores x.
-
-      """
+#      """
+#      Função de exemplo com anotações.
+#      Argumentos:
+#          param1: O primeiro parâmetro.
+#          param2: O segundo parâmetro.
+#      Retorna:
+#          Uma lista de valores x.
+#
+#      """
 
 input("Aperte Enter para continuar...")
 # TAREFA 12 - Desafio! (Opcional)
