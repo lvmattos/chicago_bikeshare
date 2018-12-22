@@ -147,7 +147,32 @@ input("Aperte Enter para continuar...")
 # TAREFA 7
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
+def types_users(data_list):
+    user_types = []
+    for x in data_list:
+        if x[-3] not in user_types:
+            user_types.append(x[-3])
+    
+    user_types = sorted(user_types)
+    return user_types
 
+def count_types_users(data_list):
+    customer = len(list(filter(lambda x: x[-3].lower() == 'Customer'.lower(), data_list)))
+    subscriber = len(list(filter(lambda x: x[-3].lower() == 'Subscriber'.lower(), data_list)))
+    dependent = len(list(filter(lambda x: x[-3].lower() == 'Dependent'.lower(), data_list)))
+    
+    return [customer, dependent, subscriber]
+
+gender_list = column_to_list(data_list, -3)
+types = types_users(data_list)
+quantity = count_types_users(data_list)
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantidade')
+plt.xlabel('Tipo de usuário')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por tipo de usuário')
+plt.show(block=True)
 
 input("Aperte Enter para continuar...")
 # TAREFA 8
