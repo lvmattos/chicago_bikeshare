@@ -74,8 +74,8 @@ input("Aperte Enter para continuar...")
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
-male = 0
-female = 0
+male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
+female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
 
 
 # Verificando o resultado
