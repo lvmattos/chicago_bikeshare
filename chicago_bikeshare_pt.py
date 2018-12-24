@@ -42,8 +42,8 @@ input("Aperte Enter para continuar...")
 
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 
-for xx in data_list[:20]:
-    print(xx[6])
+for row in data_list[:20]:
+    print(row[6])
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
@@ -62,8 +62,8 @@ def column_to_list(data, index):
       """
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-    for x in data:
-        column_list.append(x[index])
+    for row in data:
+        column_list.append(row[index])
 
     return column_list
 
@@ -82,9 +82,11 @@ input("Aperte Enter para continuar...")
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
-male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
-female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
+def count_by_gender(data_list, gender):
+    return len(list(filter(lambda x: x[-2] == gender, data_list)))
 
+male = count_by_gender(data_list, 'Male')
+female = count_by_gender(data_list, 'Female')
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
@@ -108,8 +110,8 @@ def count_gender(data_list):
       Retorna:
           Uma lista com a quantidade de amostras por generos
       """
-    male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
-    female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
+    male = count_by_gender(data_list, 'Male')
+    female = count_by_gender(data_list, 'Female')
     return [male, female]
 
 
@@ -135,8 +137,8 @@ def most_popular_gender(data_list):
       Retorna:
           Genero mais popular(Male/Female)
       """
-    male = len(list(filter(lambda x: x[-2] == 'Male', data_list)))
-    female = len(list(filter(lambda x: x[-2] == 'Female', data_list)))
+    male = count_by_gender(data_list, 'Male')
+    female = count_by_gender(data_list, 'Female')
     answer = "Female"
 
     if male > female:
@@ -185,6 +187,9 @@ def types_users(data_list):
     user_types = sorted(user_types)
     return user_types
 
+def count_by_types_users(data_list, type_user):
+    return len(list(filter(lambda x: x[-3].lower() == type_user.lower(), data_list)))
+
 def count_types_users(data_list):
     """
       Função count_types_users.
@@ -193,9 +198,9 @@ def count_types_users(data_list):
       Retorna:
         Quantidade de usuário por tipos
       """
-    customer = len(list(filter(lambda x: x[-3].lower() == 'Customer'.lower(), data_list)))
-    subscriber = len(list(filter(lambda x: x[-3].lower() == 'Subscriber'.lower(), data_list)))
-    dependent = len(list(filter(lambda x: x[-3].lower() == 'Dependent'.lower(), data_list)))
+    customer = count_by_types_users(data_list, 'Customer')
+    subscriber = count_by_types_users(data_list, 'Subscriber')
+    dependent = count_by_types_users(data_list, 'Dependent')
     
     return [customer, dependent, subscriber]
 
@@ -240,9 +245,9 @@ def trip_duration_min(data_list):
       """
     min_trip = float(data_list[1][2])
 
-    for x in data_list:
-        if(float(x[2]) < min_trip):
-            min_trip = float(x[2])
+    for row in data_list:
+        if(float(row[2]) < min_trip):
+            min_trip = float(row[2])
 
     return min_trip
 
@@ -256,9 +261,9 @@ def trip_duration_max(data_list):
       """
     max_trip = float(data_list[1][2])
 
-    for x in data_list:
-        if(float(x[2]) > max_trip):
-            max_trip = float(x[2])
+    for row in data_list:
+        if(float(row[2]) > max_trip):
+            max_trip = float(row[2])
 
     return max_trip
 
@@ -272,8 +277,8 @@ def trip_duration_mean(data_list):
       """
     max_mean = 0.
 
-    for x in data_list:
-        max_mean += float(x[2])
+    for row in data_list:
+        max_mean += float(row[2])
 
     return max_mean / len(data_list)
 
@@ -285,19 +290,16 @@ def trip_duration_median(data_list):
       Retorna:
           Valor mediano da duração de uma viagem.
       """
-    teste = column_to_list(data_list, 2)
-    testee = []
-    for x in teste:
-        if x != '':
-            testee.append(float(x))
+    list_of_duration = column_to_list(data_list, 2)
+    list_of_duration_float = []
+    for duration in list_of_duration:
+        if duration != '':
+            list_of_duration_float.append(float(duration))
             
-    data_list_ordered = sorted(testee)
+    data_list_ordered = sorted(list_of_duration_float)
     count = len(data_list_ordered)  
     max_median = 0.
     if count % 2 == 0:
-        print(data_list_ordered[int(count / 2)])
-        print(data_list_ordered[int(count / 2) + 1])
-
         max_median = float(((data_list_ordered[int(count / 2)] + data_list_ordered[int(count / 2) + 1])) / 2)
     else:
         max_median = float(data_list_ordered[int(count / 2 + 0.5)])
@@ -367,11 +369,11 @@ def count_items(column_list):
     item_types = []
     count_items = []
 
-    test = set(column_list)
+    gender_list = set(column_list)
 
-    for x in test:
-        item_types.append(x)
-        count_items.append(len(list(filter(lambda xx: xx == x, column_list))))
+    for gender in gender_list:
+        item_types.append(gender)
+        count_items.append(len(list(filter(lambda g: g == gender, column_list))))
 
     return item_types, count_items
 
