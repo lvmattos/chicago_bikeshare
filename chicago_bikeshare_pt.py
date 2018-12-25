@@ -55,8 +55,8 @@ def column_to_list(data, index):
     """
       Função column_to_list.
       Argumentos:
-          param1: list da dados.
-          param2: index
+          data: list da dados.
+          index: index de dados
       Retorna:
           Lista de dados pelo index(feature)
       """
@@ -83,7 +83,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
 def count_by_gender(data_list, gender):
-    return len(list(filter(lambda x: x[-2] == gender, data_list)))
+    return len(list(filter(lambda data: data[-2] == gender, data_list)))
 
 male = count_by_gender(data_list, 'Male')
 female = count_by_gender(data_list, 'Female')
@@ -106,7 +106,7 @@ def count_gender(data_list):
     """
       Função count_gender.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           Uma lista com a quantidade de amostras por generos
       """
@@ -133,7 +133,7 @@ def most_popular_gender(data_list):
     """
       Função most_popular_gender.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           Genero mais popular(Male/Female)
       """
@@ -143,6 +143,8 @@ def most_popular_gender(data_list):
 
     if male > female:
         answer = "Male"
+    elif male == female:
+        answer = "Are equals"
 
     return answer
 
@@ -175,26 +177,26 @@ def types_users(data_list):
     """
       Função types_users.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           List com os tipos de usuários.
       """
     user_types = []
-    for x in data_list:
-        if x[-3] not in user_types:
-            user_types.append(x[-3])
+    for data in data_list:
+        if data[-3] not in user_types:
+            user_types.append(data[-3])
     
     user_types = sorted(user_types)
     return user_types
 
 def count_by_types_users(data_list, type_user):
-    return len(list(filter(lambda x: x[-3].lower() == type_user.lower(), data_list)))
+    return len(list(filter(lambda data: data[-3].lower() == type_user.lower(), data_list)))
 
 def count_types_users(data_list):
     """
       Função count_types_users.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
         Quantidade de usuário por tipos
       """
@@ -239,7 +241,7 @@ def trip_duration_min(data_list):
     """
       Função trip_duration_min.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           Valor minimo da duração de uma viagem.
       """
@@ -255,7 +257,7 @@ def trip_duration_max(data_list):
     """
       Função trip_duration_max.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           Valor máximo da duração de uma viagem.
       """
@@ -271,7 +273,7 @@ def trip_duration_mean(data_list):
     """
       Função trip_duration_mean.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           Valor médio da duração de uma viagem.
       """
@@ -286,7 +288,7 @@ def trip_duration_median(data_list):
     """
       Função trip_duration_median.
       Argumentos:
-          param1: list da dados.
+          data_list: lista dos dados.
       Retorna:
           Valor mediano da duração de uma viagem.
       """
@@ -362,7 +364,7 @@ def count_items(column_list):
     """
       Função count_items.
       Argumentos:
-          param1: list da dados.
+          column_list: lista dos dados.
       Retorna:
           Os generos encontrados nas amostras e a quantidade de cada um.
       """
