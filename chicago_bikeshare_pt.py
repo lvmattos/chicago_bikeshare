@@ -83,6 +83,14 @@ input("Aperte Enter para continuar...")
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
 def count_by_gender(data_list, gender):
+    """
+      Função count_by_gender.
+      Argumentos:
+          data_list: lista de dados.
+          gender: gênero a ser procurado
+      Retorna:
+          Quantidade de dados por gênero
+      """
     return len(list(filter(lambda data: data[-2] == gender, data_list)))
 
 male = count_by_gender(data_list, 'Male')
@@ -190,6 +198,14 @@ def types_users(data_list):
     return user_types
 
 def count_by_types_users(data_list, type_user):
+    """
+      Função count_by_types_users.
+      Argumentos:
+          data_list: lista de dados.
+          type_user: tipo de usuário
+      Retorna:
+          Quantidade de dados por tipo de usuário
+      """
     return len(list(filter(lambda data: data[-3].lower() == type_user.lower(), data_list)))
 
 def count_types_users(data_list):
